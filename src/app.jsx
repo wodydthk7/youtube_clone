@@ -1,6 +1,6 @@
 import './app.css';
 import React, {useEffect, useState} from 'react'
-import SearchBar from './components/searchBar'
+import SearchBar from './components/searchBar/searchBar'
 import VideoList from './components/videoList/videoList'
 import key from "./youtubeKey"
 
