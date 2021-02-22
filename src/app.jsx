@@ -1,30 +1,27 @@
-import './app.css';
-import React, {useEffect, useState} from 'react'
+import styles from './app.module.css';
+import React, { useCallback, useEffect, useState } from 'react'
 import SearchBar from './components/searchBar/searchBar'
 import VideoList from './components/videoList/videoList'
-import key from "./youtubeKey"
 
-function App() {
+
+function App({youtube}) {
   const [videos, setVideos] = useState([]);
-  const mostPopularUrl = 'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=KR&maxResults=10&key=' + key[1]
-
+  
+  
   useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      redirect: 'follow',
-    };
-
-    console.log(mostPopularUrl)
-
-    fetch(mostPopularUrl, requestOptions)
-      .then(response => response.json())
-      .then(result => setVideos(result.items))
-      .catch(error => console.log('errer', error))
+    youtube.mostPopular()
+    .then(videos => setVideos(videos))
   }, [])
+    
+
+  const handleSearch = useCallback((query) => {
+    youtube.search(query)
+    .then(videos => setVideos(videos))
+  })
 
   return (
-    <div className="App">
-      <SearchBar/> 
+    <div className={styles.App}>
+      <SearchBar onSearch={handleSearch}/> 
       <VideoList videos={videos}/>
     </div>
   );
