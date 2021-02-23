@@ -2,11 +2,12 @@ import styles from './app.module.css';
 import React, { useCallback, useEffect, useState } from 'react'
 import SearchBar from './components/searchBar/searchBar'
 import VideoList from './components/videoList/videoList'
+import VideoDetail from './components/videoDetail/videoDetail';
 
 
 function App({youtube}) {
   const [videos, setVideos] = useState([]);
-  
+  const [selected, setSelected] = useState(null);
   
   useEffect(() => {
     youtube.mostPopular()
@@ -19,10 +20,21 @@ function App({youtube}) {
     .then(videos => setVideos(videos))
   })
 
+  const handleSelected = useCallback((video) => {
+    setSelected(video)
+  })
+
   return (
-    <div className={styles.App}>
+    <div className={styles.app}>
       <SearchBar onSearch={handleSearch}/> 
-      <VideoList videos={videos}/>
+      <section className={styles.contents}>
+        { selected && <div className={styles.detail}>
+            <VideoDetail video={selected}/>
+        </div> }
+        <div className={styles.list}>
+          <VideoList videos={videos} onSelected={handleSelected} display={selected ? 'list' : 'grid'}/>
+        </div>
+      </section>
     </div>
   );
 }

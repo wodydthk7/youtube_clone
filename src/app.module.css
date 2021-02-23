@@ -1,3 +1,20 @@
-.App {
-  width: 70%
+.app {
+  max-width: 80rem;
+}
+
+.contents {
+  display: flex;
+  padding: 1em;
+}
+
+.detail {
+  /* flex: 1 1 70%; */
+  flex-basis: 70%;
+  margin-right: 1em;
+  margin-top: 0.2em;
+}
+
+.list {
+  /* flex: 1 1 30%; */
+  flex-basis: 30%;
 }
