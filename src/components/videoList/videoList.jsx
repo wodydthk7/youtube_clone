@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {memo} from 'react';
 import Video from '../video/video';
 import styles from './videoList.module.css'
 
-const VideoList = ({ onSelected, videos, display}) => {
+const VideoList = memo(({ onSelected, videos, display}) => {
   const handleSelected = (video) => {
     onSelected(video)
   }
@@ -17,6 +17,6 @@ const VideoList = ({ onSelected, videos, display}) => {
       }
     </ul>
   );
-};
+});
 
 export default VideoList;

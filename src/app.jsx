@@ -12,21 +12,29 @@ function App({youtube}) {
   useEffect(() => {
     youtube.mostPopular()
     .then(videos => setVideos(videos))
-  }, [])
+  }, [youtube])
     
+  const handleClickLogo = useCallback(() => {
+    setSelected(null)
+    youtube.mostPopular()
+    .then(videos => setVideos(videos))
+  }, [youtube])
 
   const handleSearch = useCallback((query) => {
     youtube.search(query)
-    .then(videos => setVideos(videos))
-  })
+    .then(videos => {
+      setSelected(null)
+      setVideos(videos)
+    })
+  }, [youtube])
 
   const handleSelected = useCallback((video) => {
     setSelected(video)
-  })
+  }, [])
 
   return (
     <div className={styles.app}>
-      <SearchBar onSearch={handleSearch}/> 
+      <SearchBar onClick={handleClickLogo} onSearch={handleSearch}/> 
       <section className={styles.contents}>
         { selected && <div className={styles.detail}>
             <VideoDetail video={selected}/>

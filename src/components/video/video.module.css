@@ -55,6 +55,13 @@
 .title, .channelTitle {
   margin: 0;
   font-size: 0.9rem;
+  width: 100%;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .channelTitle {

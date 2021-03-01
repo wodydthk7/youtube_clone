@@ -7,9 +7,17 @@
 }
 
 .logo {
+  background-color: black;
+  color: white;
+  border: none;
   display: flex;
   align-items: center;
   margin-right: 0.6em;
+  cursor: pointer;
+}
+
+.logo_img {
+  margin-right: 0.3em;
 }
 
 .input {

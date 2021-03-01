@@ -8,10 +8,10 @@ const VideoDetail = ({ video,
       <iframe className={styles.video} 
         type="text/html" 
         src={`https://www.youtube.com/embed/${video.id}`}
-        frameborder="0" allowfullscreen/>
+        frameBorder="0" allowFullScreen/>
       <h1>{title}</h1>
       <p>{channelTitle}</p>
-      <pre className={styles.describtion}>
+      <pre className={styles.description}>
         {description}
       </pre>
     </div>
